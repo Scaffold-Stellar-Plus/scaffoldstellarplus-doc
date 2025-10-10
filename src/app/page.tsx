@@ -1,103 +1,308 @@
-import Image from "next/image";
+import Link from 'next/link'
+import { Button } from '@/components/button'
+import { 
+  Rocket, 
+  Zap, 
+  Wallet, 
+  Code2, 
+  ArrowRight, 
+  Github,
+  CheckCircle2,
+  Sparkles
+} from 'lucide-react'
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="relative">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-background">
+        {/* Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-secondary/30 to-secondary/50" />
+        <div className="absolute inset-0 bg-grid-pattern opacity-5" />
+        
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-16 sm:pt-24 sm:pb-20">
+          <div className="text-center animate-fade-in">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-1.5 text-sm font-medium text-foreground mb-8 border border-border">
+              <Sparkles className="h-4 w-4" />
+              100% Zero-Configuration Smart Contract Detection
+            </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            {/* Main heading */}
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight mb-6 text-foreground">
+              Build Stellar Apps
+              <br />
+              <span>
+                The Smart Way
+              </span>
+            </h1>
+
+            {/* Description */}
+            <p className="mx-auto max-w-2xl text-lg sm:text-xl text-muted-foreground mb-10">
+              Enhanced, production-ready fullstack boilerplate for building Stellar Soroban 
+              smart contracts with Next.js. Features dynamic contract detection, 
+              multi-wallet support, and powerful reusable hooks.
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+              <Link href="/docs/getting-started">
+                <Button size="lg" className="w-full sm:w-auto">
+                  Get Started
+                  <ArrowRight className="h-5 w-5" />
+                </Button>
+              </Link>
+              <a
+                href="https://github.com/Scaffold-Stellar-Plus/scaffoldstellarplus"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button size="lg" variant="outline" className="w-full sm:w-auto">
+                  <Github className="h-5 w-5" />
+                  View on GitHub
+                </Button>
+              </a>
+            </div>
+
+            {/* Quick stats */}
+            <div className="flex flex-wrap justify-center gap-8 text-sm text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-foreground" />
+                <span>MIT Licensed</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-foreground" />
+                <span>TypeScript First</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="h-4 w-4 text-foreground" />
+                <span>Production Ready</span>
+              </div>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-20 sm:py-24 bg-background">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+              Everything You Need to Build
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Scaffold Stellar Plus provides a complete toolkit for rapid Stellar dApp development
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* Feature 1 */}
+            <div className="group relative rounded-2xl border border-border bg-card p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div className="absolute inset-0 bg-accent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="relative">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-secondary text-foreground mb-4">
+                  <Zap className="h-6 w-6" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">
+                  Zero-Config Detection
+                </h3>
+                <p className="text-muted-foreground text-sm">
+                  Automatically detects and adapts to any Soroban contract structure. 
+                  No manual configuration needed.
+                </p>
+              </div>
+            </div>
+
+            {/* Feature 2 */}
+            <div className="group relative rounded-2xl border border-border bg-card p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div className="absolute inset-0 bg-accent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="relative">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-secondary text-foreground mb-4">
+                  <Wallet className="h-6 w-6" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">
+                  Multi-Wallet Integration
+                </h3>
+                <p className="text-muted-foreground text-sm">
+                  Seamless support for Freighter, Albedo, XBull, and more. 
+                  One unified API for all wallets.
+                </p>
+              </div>
+            </div>
+
+            {/* Feature 3 */}
+            <div className="group relative rounded-2xl border border-border bg-card p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div className="absolute inset-0 bg-accent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="relative">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-secondary text-foreground mb-4">
+                  <Code2 className="h-6 w-6" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">
+                  Reusable Blockchain Hooks
+                </h3>
+                <p className="text-muted-foreground text-sm">
+                  Powerful React hooks for reading and writing to any smart contract 
+                  with full TypeScript support.
+                </p>
+              </div>
+            </div>
+
+            {/* Feature 4 */}
+            <div className="group relative rounded-2xl border border-border bg-card p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div className="absolute inset-0 bg-accent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="relative">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-secondary text-foreground mb-4">
+                  <Rocket className="h-6 w-6" />
+                </div>
+                <h3 className="text-xl font-semibold mb-2">
+                  Ready for Production
+                </h3>
+                <p className="text-muted-foreground text-sm">
+                  Built with best practices, professional UI/UX, error handling, 
+                  and deployment scripts included.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Code Example Section */}
+      <section className="py-20 sm:py-24 bg-secondary/30">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+              Simple, Powerful API
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Interact with any smart contract using our intuitive hooks
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {/* Read Example */}
+            <div className="rounded-2xl border border-border bg-card overflow-hidden">
+              <div className="bg-secondary px-6 py-4 border-b border-border">
+                <h3 className="font-semibold text-sm">Reading Contract Data</h3>
+              </div>
+              <pre className="p-6 overflow-x-auto text-sm">
+                <code className="text-foreground">{`import { useDynamicContracts } from '@/hooks/useDynamicContracts'
+
+export function Counter() {
+  const { callReadMethod } = useDynamicContracts()
+  const [count, setCount] = useState(null)
+
+  const fetchCount = async () => {
+    const result = await callReadMethod(
+      'increment',     // Contract name
+      'get_count',     // Method name
+      {}               // Arguments
+    )
+    setCount(result)
+  }
+
+  return <div>Count: {count}</div>
+}`}</code>
+              </pre>
+            </div>
+
+            {/* Write Example */}
+            <div className="rounded-2xl border border-border bg-card overflow-hidden">
+              <div className="bg-secondary px-6 py-4 border-b border-border">
+                <h3 className="font-semibold text-sm">Writing to Contracts</h3>
+              </div>
+              <pre className="p-6 overflow-x-auto text-sm">
+                <code className="text-foreground">{`import { useDynamicContracts } from '@/hooks/useDynamicContracts'
+
+export function IncrementButton() {
+  const { callWriteMethod } = useDynamicContracts()
+  const { isConnected } = useWallet()
+
+  const increment = async () => {
+    await callWriteMethod(
+      'increment',     // Contract name
+      'increment',     // Method name
+      {}               // Arguments
+    )
+    alert('Success!')
+  }
+
+  return <button onClick={increment}>+1</button>
+}`}</code>
+              </pre>
+            </div>
+          </div>
+
+          {/* Features list */}
+          <div className="mt-12 grid sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-secondary text-foreground mb-3">
+                <CheckCircle2 className="h-5 w-5" />
+              </div>
+              <p className="text-sm font-medium">Type-Safe</p>
+              <p className="text-xs text-muted-foreground mt-1">
+                Full TypeScript support with auto-generated bindings
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-secondary text-foreground mb-3">
+                <CheckCircle2 className="h-5 w-5" />
+              </div>
+              <p className="text-sm font-medium">Auto-Detection</p>
+              <p className="text-xs text-muted-foreground mt-1">
+                Automatically discovers all contract methods
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="inline-flex items-center justify-center w-10 h-10 rounded-full bg-secondary text-foreground mb-3">
+                <CheckCircle2 className="h-5 w-5" />
+              </div>
+              <p className="text-sm font-medium">Reusable</p>
+              <p className="text-xs text-muted-foreground mt-1">
+                Works with any Soroban smart contract
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 sm:py-24 bg-background">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="relative rounded-3xl bg-foreground p-12 sm:p-16 text-center overflow-hidden border border-foreground shadow-xl">
+            <div className="absolute inset-0 bg-grid-pattern opacity-10" />
+            <div className="relative">
+              <h2 className="text-3xl sm:text-4xl font-bold text-background mb-4">
+                Ready to Build Your Stellar dApp?
+              </h2>
+              <p className="text-lg text-background/90 mb-8 max-w-2xl mx-auto">
+                Get started in minutes with our comprehensive documentation and examples
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/docs/getting-started">
+                  <Button 
+                    size="lg" 
+                    variant="secondary"
+                    className="w-full sm:w-auto"
+                  >
+                    Read the Docs
+                    <ArrowRight className="h-5 w-5" />
+                  </Button>
+                </Link>
+                <Link href="/examples">
+                  <Button 
+                    size="lg" 
+                    variant="outline"
+                    className="w-full sm:w-auto border-background/20 text-background hover:bg-background/10"
+                  >
+                    View Examples
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-  );
+  )
 }

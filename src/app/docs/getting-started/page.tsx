@@ -77,11 +77,14 @@ export default function GettingStartedPage() {
 
           <div className="space-y-8">
             <div>
-              <h3 className="text-xl font-semibold mb-3">1. Clone the Repository</h3>
-              <CodeBlock id="clone-repo">
-{`git clone https://github.com/Scaffold-Stellar-Plus/scaffoldstellarplus.git
-cd scaffoldstellarplus`}
+              <h3 className="text-xl font-semibold mb-3">1. Create Your Project</h3>
+              <CodeBlock id="create-project">
+{`npx create-scaffoldstellarplus my-stellar-dapp
+cd my-stellar-dapp`}
               </CodeBlock>
+              <p className="text-sm text-muted-foreground mt-2">
+                Replace <code className="px-1.5 py-0.5 bg-muted rounded text-xs">my-stellar-dapp</code> with your desired project name.
+              </p>
             </div>
 
             <div>

@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { Button } from '@/components/button'
 import { 
@@ -43,6 +45,24 @@ export default function Home() {
               smart contracts with Next.js. Features dynamic contract detection, 
               multi-wallet support, and powerful reusable hooks.
             </p>
+
+            {/* NPX Command Showcase */}
+            <div className="mx-auto max-w-2xl mb-8">
+              <div className="relative group">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-foreground/20 to-foreground/10 rounded-lg blur opacity-30 group-hover:opacity-50 transition duration-300"></div>
+                <div className="relative bg-card border border-border rounded-lg p-4 flex items-center justify-between gap-4">
+                  <code className="text-sm sm:text-base font-mono text-foreground flex-1">
+                    npx create-scaffoldstellarplus my-stellar-dapp
+                  </code>
+                  <button
+                    onClick={() => navigator.clipboard.writeText('npx create-scaffoldstellarplus my-stellar-dapp')}
+                    className="px-3 py-1.5 text-xs bg-secondary hover:bg-secondary/80 rounded transition-colors whitespace-nowrap"
+                  >
+                    Copy
+                  </button>
+                </div>
+              </div>
+            </div>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">

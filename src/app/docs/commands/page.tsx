@@ -42,7 +42,7 @@ export default function CommandsPage() {
     {
       category: 'Deployment',
       items: [
-        { name: 'yarn setup', desc: 'Complete project setup (run once after cloning)', example: 'yarn setup' },
+        { name: 'yarn setup', desc: 'Complete project setup (run once after creating project)', example: 'yarn setup' },
         { name: 'yarn deploy:testnet', desc: 'Deploy all contracts to Stellar testnet', example: 'yarn deploy:testnet' },
         { name: 'yarn deploy:futurenet', desc: 'Deploy to Stellar futurenet', example: 'yarn deploy:futurenet' },
         { name: 'yarn deploy:localnet', desc: 'Deploy to local Stellar network', example: 'yarn deploy:localnet' }

@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import { Code2, Zap } from 'lucide-react'
 
 export default function APIReferencePage() {
   return (

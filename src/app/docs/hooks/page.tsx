@@ -2,12 +2,7 @@
 
 import Link from 'next/link'
 import { 
-  CheckCircle2,
-  ArrowRight,
-  Code2,
-  Eye,
-  Edit,
-  Wallet
+  CheckCircle2
 } from 'lucide-react'
 import { useState } from 'react'
 

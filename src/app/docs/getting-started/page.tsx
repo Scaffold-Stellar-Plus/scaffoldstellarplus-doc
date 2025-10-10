@@ -2,9 +2,7 @@
 
 import Link from 'next/link'
 import { 
-  CheckCircle2,
-  ArrowRight,
-  Terminal
+  CheckCircle2
 } from 'lucide-react'
 import { useState } from 'react'
 
@@ -153,7 +151,7 @@ cd scaffoldstellarplus`}
             <div>
               <h3 className="text-xl font-semibold mb-3">1. Connect Your Wallet</h3>
               <ol className="space-y-2 text-muted-foreground ml-6">
-                <li>Click "Connect Wallet" in the top-right corner</li>
+                <li>Click &quot;Connect Wallet&quot; in the top-right corner</li>
                 <li>Select Freighter from the wallet options</li>
                 <li>Approve the connection in the Freighter popup</li>
                 <li>Verify connection - you should see your wallet address</li>
@@ -203,10 +201,10 @@ cd scaffoldstellarplus`}
                 Let&apos;s try reading data from the increment contract:
               </p>
               <ol className="space-y-2 text-muted-foreground ml-6">
-                <li>Select "increment" from the contract dropdown</li>
-                <li>Switch to "Read Contract" tab</li>
+                <li>Select &quot;increment&quot; from the contract dropdown</li>
+                <li>Switch to &quot;Read Contract&quot; tab</li>
                 <li>Click on <code className="px-1.5 py-0.5 bg-muted rounded text-xs">get_count</code> method</li>
-                <li>Click "Execute" to call the method</li>
+                <li>Click &quot;Execute&quot; to call the method</li>
               </ol>
               <div className="bg-secondary/50 border-l-4 border-foreground/20 p-4 rounded-r mt-4">
                 <p className="text-sm text-foreground">
@@ -221,9 +219,9 @@ cd scaffoldstellarplus`}
                 Now let&apos;s modify the contract state:
               </p>
               <ol className="space-y-2 text-muted-foreground ml-6">
-                <li>Switch to "Write Contract" tab</li>
+                <li>Switch to &quot;Write Contract&quot; tab</li>
                 <li>Click on <code className="px-1.5 py-0.5 bg-muted rounded text-xs">increment</code> method</li>
-                <li>Click "Execute" to call the method</li>
+                <li>Click &quot;Execute&quot; to call the method</li>
                 <li>Approve the transaction in Freighter</li>
                 <li>Wait for confirmation</li>
               </ol>

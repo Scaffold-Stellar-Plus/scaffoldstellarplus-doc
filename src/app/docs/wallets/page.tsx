@@ -2,11 +2,7 @@
 
 import Link from 'next/link'
 import { 
-  CheckCircle2,
-  ArrowRight,
-  ExternalLink,
-  Wallet,
-  Shield
+  ExternalLink
 } from 'lucide-react'
 import { useState } from 'react'
 

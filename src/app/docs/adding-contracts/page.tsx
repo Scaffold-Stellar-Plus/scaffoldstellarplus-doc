@@ -15,7 +15,7 @@ export default function AddingContractsPage() {
     }, 2000)
   }
 
-  const CodeBlock = ({ children, id, language = '' }: { children: string; id: string; language?: string }) => (
+  const CodeBlock = ({ children, id }: { children: string; id: string; language?: string }) => (
     <div className="relative group">
       <button
         onClick={() => copyToClipboard(children, id)}

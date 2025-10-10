@@ -3,9 +3,6 @@
 import Link from 'next/link'
 import { 
   CheckCircle2,
-  ArrowRight,
-  Code2,
-  Database,
   Eye,
   Edit
 } from 'lucide-react'

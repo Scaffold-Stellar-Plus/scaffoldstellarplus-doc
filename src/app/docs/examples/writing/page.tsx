@@ -2,9 +2,7 @@
 
 import Link from 'next/link'
 import { 
-  CheckCircle2,
-  ArrowRight,
-  AlertCircle
+  CheckCircle2
 } from 'lucide-react'
 import { useState } from 'react'
 

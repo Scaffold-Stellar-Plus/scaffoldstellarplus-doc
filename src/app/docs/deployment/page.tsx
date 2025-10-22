@@ -43,10 +43,23 @@ export default function DeploymentPage() {
         {/* Network Options */}
         <section className="space-y-6">
           <h2 className="text-3xl font-bold tracking-tight">Available Networks</h2>
-          <div className="grid md:grid-cols-3 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="border border-border rounded-lg p-5">
               <div className="flex items-center gap-3 mb-3">
-                <Globe className="h-6 w-6 text-foreground" />
+                <Globe className="h-6 w-6 text-green-600" />
+                <h3 className="text-lg font-semibold">Mainnet</h3>
+              </div>
+              <p className="text-sm text-muted-foreground mb-3">
+                Production network with real XLM. Use for live applications and real transactions.
+              </p>
+              <div className="text-xs text-muted-foreground">
+                <strong>Recommended for:</strong> Production deployments
+              </div>
+            </div>
+
+            <div className="border border-border rounded-lg p-5">
+              <div className="flex items-center gap-3 mb-3">
+                <Globe className="h-6 w-6 text-blue-600" />
                 <h3 className="text-lg font-semibold">Testnet</h3>
               </div>
               <p className="text-sm text-muted-foreground mb-3">
@@ -129,6 +142,112 @@ export default function DeploymentPage() {
             <p className="text-sm text-foreground">
               <strong>Note:</strong> First-time deployment may take several minutes as contracts are compiled and deployed. Subsequent deployments are faster.
             </p>
+          </div>
+        </section>
+
+        {/* Deploying to Mainnet */}
+        <section className="space-y-6">
+          <h2 className="text-3xl font-bold tracking-tight">Deploying to Mainnet</h2>
+          <p className="text-muted-foreground">
+            ScaffoldStellar+ supports secure deployment to Stellar Mainnet with built-in safety features.
+          </p>
+
+          <div className="bg-black dark:bg-black border-l-4 border-red-500 p-4 rounded-r mb-6">
+            <p className="text-sm font-semibold text-red-800 dark:text-red-200 mb-2">
+              ⚠️ Important: Production Deployment
+            </p>
+            <p className="text-sm text-red-700 dark:text-red-300">
+              Mainnet deployments use real XLM and cannot be undone. Always test thoroughly on testnet first.
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-semibold mb-3">Prerequisites for Mainnet</h3>
+            <ul className="space-y-2 text-muted-foreground ml-6">
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="h-5 w-5 text-foreground mt-0.5 flex-shrink-0" />
+                <span>A funded Stellar account with sufficient XLM for deployment fees</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="h-5 w-5 text-foreground mt-0.5 flex-shrink-0" />
+                <span>Your account&apos;s private key (starts with &apos;S&apos;)</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="h-5 w-5 text-foreground mt-0.5 flex-shrink-0" />
+                <span>Tested contracts on testnet first</span>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-semibold mb-3">Deployment Process</h3>
+            <ol className="space-y-4 text-muted-foreground ml-6">
+              <li>
+                <strong className="text-foreground">1. Deploy to mainnet:</strong>
+                <CodeBlock id="deploy-mainnet">
+{`yarn deploy:mainnet`}
+                </CodeBlock>
+              </li>
+              <li>
+                <strong className="text-foreground">2. Enter your private key</strong> when prompted (input is masked):
+                <CodeBlock id="mainnet-prompt">
+{`🔐 MAINNET DEPLOYMENT - PRIVATE KEY REQUIRED
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️  WARNING: You are deploying to Stellar MAINNET!
+⚠️  This will use real XLM from your account.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Enter your private key: ********`}
+                </CodeBlock>
+              </li>
+              <li>
+                <strong className="text-foreground">3. Confirm deployment</strong> by typing exactly:
+                <CodeBlock id="mainnet-confirm">
+{`DEPLOY TO MAINNET`}
+                </CodeBlock>
+              </li>
+              <li>
+                <strong className="text-foreground">4. Wait for deployment</strong> - the script will:
+                <ul className="space-y-1 text-sm ml-6 mt-2">
+                  <li>• Build all contracts</li>
+                  <li>• Deploy to Stellar mainnet</li>
+                  <li>• Generate TypeScript bindings</li>
+                  <li>• Create mainnet configuration files</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-semibold mb-3">Generated Mainnet Files</h3>
+            <ul className="space-y-2 text-sm text-muted-foreground ml-6">
+              <li>• <code className="px-1.5 py-0.5 bg-muted rounded text-xs">.env.mainnet.local</code> - Mainnet environment variables</li>
+              <li>• <code className="px-1.5 py-0.5 bg-muted rounded text-xs">deployment-mainnet.json</code> - Mainnet contract addresses</li>
+              <li>• <code className="px-1.5 py-0.5 bg-muted rounded text-xs">frontend/public/deployment-mainnet.json</code> - For network switching</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-semibold mb-3">Security Features</h3>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="border border-green-500/20 bg-green-50 dark:bg-black rounded-lg p-4">
+                <h4 className="font-semibold text-green-800 dark:text-green-200 mb-2">✅ Safe Practices</h4>
+                <ul className="space-y-1 text-sm text-green-700 dark:text-green-300">
+                  <li>• Private key never logged or stored</li>
+                  <li>• Input is masked during entry</li>
+                  <li>• Double confirmation required</li>
+                  <li>• Script runs entirely locally</li>
+                </ul>
+              </div>
+              <div className="border border-red-500/20 bg-black dark:bg-black rounded-lg p-4">
+                <h4 className="font-semibold text-red-800 dark:text-red-200 mb-2">⚠️ Never</h4>
+                <ul className="space-y-1 text-sm text-red-700 dark:text-red-300">
+                  <li>• Commit private keys to git</li>
+                  <li>• Share your private key</li>
+                  <li>• Use production keys in development</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -222,6 +341,106 @@ NEXT_PUBLIC_STELLAR_RPC_URL=http://localhost:8000`}
           <p className="text-sm text-muted-foreground">
             This file is automatically generated and updated during deployment.
           </p>
+        </section>
+
+        {/* Selective Contract Deployment */}
+        <section className="space-y-6">
+          <h2 className="text-3xl font-bold tracking-tight">Selective Contract Deployment</h2>
+          <p className="text-muted-foreground">
+            Deploy only specific contracts instead of all contracts at once:
+          </p>
+
+          <div className="space-y-4">
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Deploy single contract to testnet:</h3>
+              <CodeBlock id="deploy-single-testnet">
+{`# Deploy only hello_world to testnet
+yarn deploy:testnet hello_world
+
+# Deploy only increment to testnet
+yarn deploy:testnet increment`}
+              </CodeBlock>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Deploy single contract to mainnet:</h3>
+              <CodeBlock id="deploy-single-mainnet">
+{`# Deploy only hello_world to mainnet
+yarn deploy:mainnet hello_world
+
+# Deploy only increment to mainnet
+yarn deploy:mainnet increment`}
+              </CodeBlock>
+            </div>
+          </div>
+
+          <div className="bg-secondary/50 border-l-4 border-foreground/20 p-4 rounded-r mt-4">
+            <p className="text-sm text-foreground mb-2">
+              <strong>Benefits:</strong>
+            </p>
+            <ul className="space-y-1 text-sm text-foreground ml-4">
+              <li>• ⚡ Faster deployment (only builds/deploys one contract)</li>
+              <li>• 🎯 More control over what gets deployed</li>
+              <li>• 💰 Lower fees on mainnet (only one contract)</li>
+              <li>• 🔄 Update specific contracts without touching others</li>
+            </ul>
+          </div>
+        </section>
+
+        {/* Network Switching */}
+        <section className="space-y-6">
+          <h2 className="text-3xl font-bold tracking-tight">Network Switching</h2>
+          <p className="text-muted-foreground">
+            The frontend includes a network selector in the header that allows switching between networks:
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-4 my-6">
+            <div className="border border-border rounded-lg p-4">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-2xl">🟢</span>
+                <h3 className="font-semibold">Mainnet</h3>
+              </div>
+              <p className="text-sm text-muted-foreground">Production deployment with real XLM</p>
+            </div>
+            <div className="border border-border rounded-lg p-4">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-2xl">🔵</span>
+                <h3 className="font-semibold">Testnet</h3>
+              </div>
+              <p className="text-sm text-muted-foreground">Development and testing</p>
+            </div>
+            <div className="border border-border rounded-lg p-4">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-2xl">🟣</span>
+                <h3 className="font-semibold">Futurenet</h3>
+              </div>
+              <p className="text-sm text-muted-foreground">Experimental features</p>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <p className="text-muted-foreground">
+              The frontend automatically:
+            </p>
+            <ul className="space-y-2 text-muted-foreground ml-6">
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="h-5 w-5 text-foreground mt-0.5 flex-shrink-0" />
+                <span>Loads the correct contract addresses for each network</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="h-5 w-5 text-foreground mt-0.5 flex-shrink-0" />
+                <span>Updates RPC endpoints automatically</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="h-5 w-5 text-foreground mt-0.5 flex-shrink-0" />
+                <span>Saves network selection to localStorage</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="h-5 w-5 text-foreground mt-0.5 flex-shrink-0" />
+                <span>Shows visual indicators with color-coded badges</span>
+              </li>
+            </ul>
+          </div>
         </section>
 
         {/* Environment Variables */}

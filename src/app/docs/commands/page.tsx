@@ -43,9 +43,13 @@ export default function CommandsPage() {
       category: 'Deployment',
       items: [
         { name: 'yarn setup', desc: 'Complete project setup (run once after creating project)', example: 'yarn setup' },
-        { name: 'yarn deploy:testnet', desc: 'Deploy all contracts to Stellar testnet', example: 'yarn deploy:testnet' },
+        { name: 'yarn deploy:testnet', desc: 'Deploy all contracts to Stellar testnet + generate bindings', example: 'yarn deploy:testnet' },
+        { name: 'yarn deploy:testnet <contract>', desc: 'Deploy specific contract to testnet', example: 'yarn deploy:testnet hello_world' },
+        { name: 'yarn deploy:mainnet', desc: 'Deploy all contracts to Stellar mainnet (requires private key) ⚠️', example: 'yarn deploy:mainnet' },
+        { name: 'yarn deploy:mainnet <contract>', desc: 'Deploy specific contract to mainnet', example: 'yarn deploy:mainnet hello_world' },
         { name: 'yarn deploy:futurenet', desc: 'Deploy to Stellar futurenet', example: 'yarn deploy:futurenet' },
-        { name: 'yarn deploy:localnet', desc: 'Deploy to local Stellar network', example: 'yarn deploy:localnet' }
+        { name: 'yarn deploy:localnet', desc: 'Deploy to local Stellar network', example: 'yarn deploy:localnet' },
+        { name: 'yarn copy:deployments', desc: 'Copy deployment files to frontend public directory', example: 'yarn copy:deployments' }
       ]
     },
     {
@@ -69,9 +73,9 @@ export default function CommandsPage() {
     {
       category: 'Maintenance',
       items: [
-        { name: 'yarn clean', desc: 'Remove contracts/target, packages, metadata, and build artifacts', example: 'yarn clean' },
-        { name: 'yarn clean:frontend', desc: 'Remove all auto-generated frontend files', example: 'yarn clean:frontend' },
-        { name: 'yarn clean:all', desc: 'Deep clean (includes node_modules)', example: 'yarn clean:all' }
+        { name: 'yarn clean', desc: 'Remove contracts/target, packages, metadata, contract imports, and Next.js build artifacts', example: 'yarn clean' },
+        { name: 'yarn clean:frontend', desc: 'Remove all auto-generated frontend files (packages, metadata, contract imports, .next)', example: 'yarn clean:frontend' },
+        { name: 'yarn clean:all', desc: 'Deep clean (includes node_modules, contracts/target, and all auto-generated files)', example: 'yarn clean:all' }
       ]
     }
   ]
@@ -103,6 +107,61 @@ export default function CommandsPage() {
             </div>
           </section>
         ))}
+
+        {/* Clean Commands Details */}
+        <section className="space-y-6 pt-8 border-t border-border">
+          <h2 className="text-3xl font-bold tracking-tight">Understanding Clean Commands</h2>
+          <p className="text-muted-foreground">
+            The clean commands help you reset your project to different states. Here&apos;s what gets removed:
+          </p>
+
+          <div className="space-y-6">
+            <div className="border border-border rounded-lg p-6">
+              <h3 className="text-lg font-semibold mb-3">
+                <code className="text-sm bg-muted px-2 py-1 rounded">yarn clean</code>
+              </h3>
+              <p className="text-sm text-muted-foreground mb-3">Removes build artifacts and auto-generated files:</p>
+              <ul className="space-y-1 text-sm text-muted-foreground ml-6">
+                <li>• <code className="px-1.5 py-0.5 bg-muted rounded text-xs">contracts/target/</code> - Compiled WASM contracts</li>
+                <li>• <code className="px-1.5 py-0.5 bg-muted rounded text-xs">frontend/packages/*/</code> - All auto-generated contract packages (TypeScript bindings)</li>
+                <li>• <code className="px-1.5 py-0.5 bg-muted rounded text-xs">frontend/contracts/*.ts</code> - Auto-generated contract import files (except util.ts)</li>
+                <li>• <code className="px-1.5 py-0.5 bg-muted rounded text-xs">frontend/lib/contract-metadata.json</code> - Auto-generated contract metadata</li>
+                <li>• <code className="px-1.5 py-0.5 bg-muted rounded text-xs">frontend/.next/</code> - Next.js build cache</li>
+              </ul>
+            </div>
+
+            <div className="border border-border rounded-lg p-6">
+              <h3 className="text-lg font-semibold mb-3">
+                <code className="text-sm bg-muted px-2 py-1 rounded">yarn clean:frontend</code>
+              </h3>
+              <p className="text-sm text-muted-foreground mb-3">Removes only frontend auto-generated files (same as above but preserves contracts/target)</p>
+            </div>
+
+            <div className="border border-border rounded-lg p-6">
+              <h3 className="text-lg font-semibold mb-3">
+                <code className="text-sm bg-muted px-2 py-1 rounded">yarn clean:all</code>
+              </h3>
+              <p className="text-sm text-muted-foreground mb-3">Deep clean - removes everything including dependencies:</p>
+              <ul className="space-y-1 text-sm text-muted-foreground ml-6">
+                <li>• Everything from <code className="px-1.5 py-0.5 bg-muted rounded text-xs">yarn clean</code></li>
+                <li>• <code className="px-1.5 py-0.5 bg-muted rounded text-xs">node_modules/</code> - All JavaScript dependencies</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="bg-secondary/50 border-l-4 border-foreground/20 p-4 rounded-r">
+            <p className="text-sm text-foreground mb-2">
+              <strong>To regenerate after cleaning:</strong>
+            </p>
+            <CodeBlock id="regenerate">
+{`# If contracts already deployed:
+yarn build:packages && yarn post-deploy
+
+# Or redeploy everything:
+yarn deploy:testnet`}
+            </CodeBlock>
+          </div>
+        </section>
 
         {/* Next Steps */}
         <section className="space-y-6 pt-8 border-t border-border">

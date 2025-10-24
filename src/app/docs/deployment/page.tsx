@@ -469,6 +469,79 @@ NEXT_PUBLIC_STELLAR_RPC_URL=https://rpc-futurenet.stellar.org`}
           </div>
         </section>
 
+        {/* Constructor Argument Detection */}
+        <section className="space-y-6">
+          <h2 className="text-3xl font-bold tracking-tight">Constructor Argument Detection</h2>
+          <p className="text-muted-foreground">
+            Scaffold Stellar Plus automatically detects constructor arguments and prompts you interactively during deployment.
+          </p>
+
+          <div className="space-y-4">
+            <h3 className="text-xl font-semibold">Features</h3>
+            <ul className="space-y-2 text-muted-foreground ml-6">
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="h-5 w-5 text-foreground mt-0.5 flex-shrink-0" />
+                <span><strong>Auto-Detection:</strong> Scans Rust source code for <code className="px-1.5 py-0.5 bg-muted rounded text-xs">__constructor</code> functions</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="h-5 w-5 text-foreground mt-0.5 flex-shrink-0" />
+                <span><strong>Interactive Prompts:</strong> User-friendly prompts with type validation</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="h-5 w-5 text-foreground mt-0.5 flex-shrink-0" />
+                <span><strong>Smart Validation:</strong> Validates Stellar addresses, integers, strings, etc.</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="h-5 w-5 text-foreground mt-0.5 flex-shrink-0" />
+                <span><strong>Type-Aware:</strong> Handles Address, String, Symbol, i128, u32, bool, Vec types</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <CheckCircle2 className="h-5 w-5 text-foreground mt-0.5 flex-shrink-0" />
+                <span><strong>CLI Integration:</strong> Automatically formats arguments for Stellar CLI</span>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-xl font-semibold mb-3">Example: Deploying with Constructor Arguments</h3>
+            <p className="text-muted-foreground mb-3">
+              When deploying a contract that requires constructor arguments, you&apos;ll see an interactive prompt:
+            </p>
+            <CodeBlock id="constructor-example">
+{`# Deploying a contract with constructor arguments
+yarn deploy:testnet pool
+
+🔧 Constructor Arguments for pool
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+This contract requires 4 constructor argument(s):
+
+1. token_a (Stellar address (starts with C or G))
+   Enter value for token_a: CCVQ4H65EXQTPONOYK7CTH6JMCAWKJ4RP257FE2MA2UCF2AHVRHGQNTA
+   ✓ Set to: CCVQ4H65EXQTPONOYK7CTH6JMCAWKJ4RP257FE2MA2UCF2AHVRHGQNTA
+
+2. token_b (Stellar address (starts with C or G))
+   Enter value for token_b: CDIJAM6NYMJG5BCATG4TY75GCO4YP4ZYQHTFMH6KH64GEELIM7XH7E4E
+   ✓ Set to: CDIJAM6NYMJG5BCATG4TY75GCO4YP4ZYQHTFMH6KH64GEELIM7XH7E4E
+
+3. lp_token_name (Text string)
+   Enter value for lp_token_name: Cosmo LP Token
+   ✓ Set to: "Cosmo LP Token"
+
+4. lp_token_symbol (Text string)
+   Enter value for lp_token_symbol: COSMO
+   ✓ Set to: COSMO
+
+✅ Constructor arguments collected: --token_a CCVQ4H65EXQTPONOYK7CTH6JMCAWKJ4RP257FE2MA2UCF2AHVRHGQNTA --token_b CDIJAM6NYMJG5BCATG4TY75GCO4YP4ZYQHTFMH6KH64GEELIM7XH7E4E --lp_token_name "Cosmo LP Token" --lp_token_symbol COSMO`}
+            </CodeBlock>
+          </div>
+
+          <div className="bg-secondary/50 border-l-4 border-foreground/20 p-4 rounded-r">
+            <p className="text-sm text-foreground">
+              <strong>Note:</strong> The system automatically detects constructor functions in your Rust code and prompts for the required arguments during deployment. No manual configuration needed!
+            </p>
+          </div>
+        </section>
+
         {/* Redeployment */}
         <section className="space-y-6">
           <h2 className="text-3xl font-bold tracking-tight">Redeploying Contracts</h2>

@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { Menu, X, Moon, Sun, Rocket } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { cn } from '@/lib/utils'
-import { DocsSearch } from './docs-search'
+import { EnhancedDocsSearch } from './enhanced-docs-search'
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -54,7 +54,7 @@ export function Navbar() {
             ))}
             
             {/* Search */}
-            <DocsSearch />
+            <EnhancedDocsSearch />
             
             {/* Theme Toggle */}
             <button

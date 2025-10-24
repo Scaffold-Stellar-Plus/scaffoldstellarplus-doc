@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "build:search": "node --input-type=module scripts/build-search-index.js",
+    "build:all": "npm run build:search && npm run build"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",

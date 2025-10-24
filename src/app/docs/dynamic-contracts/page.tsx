@@ -70,6 +70,10 @@ export default function DynamicContractsPage() {
             </li>
             <li className="flex items-start gap-3">
               <span className="font-semibold text-foreground">5.</span>
+              <span><strong>Detects</strong> constructor arguments and prompts interactively</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <span className="font-semibold text-foreground">6.</span>
               <span><strong>Updates</strong> the frontend in real-time</span>
             </li>
           </ol>
@@ -163,6 +167,36 @@ export default function DynamicContractsPage() {
                   </ul>
                 </div>
               </div>
+            </div>
+
+            <div>
+              <h3 className="text-xl font-semibold mb-3">Constructor Argument Detection</h3>
+              <p className="text-muted-foreground mb-4">
+                The system automatically detects constructor functions in your Rust code and prompts for required arguments during deployment:
+              </p>
+              <CodeBlock id="constructor-detection">
+{`// Rust contract with constructor
+#[contract]
+pub struct Pool;
+
+#[contractimpl]
+impl Pool {
+    #[constructor]
+    pub fn new(
+        env: Env,
+        token_a: Address,
+        token_b: Address,
+        lp_token_name: String,
+        lp_token_symbol: String,
+    ) -> Self {
+        // Constructor implementation
+        Pool
+    }
+}`}
+              </CodeBlock>
+              <p className="text-sm text-muted-foreground mt-3">
+                During deployment, the system will automatically prompt for these constructor arguments with type validation.
+              </p>
             </div>
           </div>
         </section>

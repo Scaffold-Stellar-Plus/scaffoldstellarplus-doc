@@ -1,6 +1,23 @@
 import { readFileSync, readdirSync, statSync } from 'fs'
 import { join } from 'path'
 
+interface ExtractedSearchableContent {
+  id: string
+  title: string
+  href: string
+  excerpt: string
+  content: string
+  section: string
+  tags: string[]
+  category: string
+  difficulty: string
+  lastModified: Date
+  popularity: number
+  keywords: string[]
+  codeBlocks: Array<{ language: string; content: string; title?: string }>
+  headings: Array<{ level: number; text: string; id: string }>
+}
+
 export interface ExtractedContent {
   title: string
   content: string
@@ -154,7 +171,7 @@ export function getAllDocFiles(docsDir: string): string[] {
 // Generate search index from all documentation files
 export function generateSearchIndex(docsDir: string) {
   const files = getAllDocFiles(docsDir)
-  const searchableContent = []
+  const searchableContent: ExtractedSearchableContent[] = []
   
   files.forEach((filePath, index) => {
     try {

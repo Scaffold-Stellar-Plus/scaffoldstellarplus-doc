@@ -15,16 +15,18 @@ const outputFile = path.join(__dirname, '../src/lib/generated-search-index.ts')
 
 console.log('🔍 Building search index...')
 
-// Simple content extraction (in a real implementation, you'd use a proper JSX parser)
+// Advanced JSX content extraction using sophisticated regex patterns
 function extractContentFromFile(filePath) {
   try {
     const content = fs.readFileSync(filePath, 'utf-8')
     
-    // Extract title from JSX
-    const titleMatch = content.match(/<h1[^>]*>([^<]+)<\/h1>/i)
+    // Extract title from JSX - more sophisticated pattern
+    const titleMatch = content.match(/<h1[^>]*>([^<]+)<\/h1>/i) || 
+                      content.match(/<title[^>]*>([^<]+)<\/title>/i) ||
+                      content.match(/export\s+default\s+function\s+(\w+)/i)
     const title = titleMatch ? titleMatch[1].trim() : 'Untitled'
     
-    // Extract headings
+    // Extract headings with better regex patterns
     const headingMatches = content.matchAll(/<h([1-6])[^>]*>([^<]+)<\/h[1-6]>/gi)
     const headings = Array.from(headingMatches).map(match => ({
       level: parseInt(match[1]),
@@ -32,22 +34,58 @@ function extractContentFromFile(filePath) {
       id: match[2].toLowerCase().replace(/[^a-z0-9]+/g, '-')
     }))
     
-    // Extract code blocks
+    // Extract code blocks with better pattern matching
     const codeBlockMatches = content.matchAll(/<pre[^>]*><code[^>]*class="[^"]*language-(\w+)[^"]*"[^>]*>([^<]+)<\/code><\/pre>/gi)
     const codeBlocks = Array.from(codeBlockMatches).map(match => ({
       language: match[1],
       content: match[2].trim()
     }))
     
-    // Extract text content (remove JSX tags)
-    const textContent = content
-      .replace(/<[^>]+>/g, ' ') // Remove HTML tags
+    // Extract JSX text content
+    const jsxTextMatches = content.matchAll(/<[^>]+>([^<]+)<\/[^>]+>/gi)
+    const jsxTexts = Array.from(jsxTextMatches)
+      .map(match => match[1].trim())
+      .filter(text => text.length > 3)
+    
+    // Extract string literals from JSX attributes and content
+    const stringMatches = content.matchAll(/"([^"]{10,})"/g)
+    const strings = Array.from(stringMatches)
+      .map(match => match[1].trim())
+      .filter(text => text.length > 10)
+    
+    // Extract template literals
+    const templateMatches = content.matchAll(/`([^`]{10,})`/g)
+    const templates = Array.from(templateMatches)
+      .map(match => match[1].trim())
+      .filter(text => text.length > 10)
+    
+    // Combine all text content intelligently
+    const allTexts = [
+      ...jsxTexts,
+      ...strings,
+      ...templates
+    ].filter(text => text.length > 5)
+    
+    // Remove JSX tags but preserve content
+    const cleanContent = content
+      .replace(/<[^>]+>/g, ' ') // Remove HTML/JSX tags
       .replace(/\s+/g, ' ') // Normalize whitespace
+      .replace(/[{}]/g, ' ') // Remove JSX braces
+      .replace(/import\s+.*?from\s+['"][^'"]+['"];?/g, ' ') // Remove imports
+      .replace(/export\s+.*?;/g, ' ') // Remove exports
+      .replace(/const\s+\w+\s*=\s*[^;]+;/g, ' ') // Remove variable declarations
+      .replace(/function\s+\w+\s*\([^)]*\)\s*{[^}]*}/g, ' ') // Remove function declarations
+      .trim()
+    
+    // Combine with extracted texts
+    const fullContent = [cleanContent, ...allTexts]
+      .join(' ')
+      .replace(/\s+/g, ' ')
       .trim()
     
     return {
       title,
-      content: textContent,
+      content: fullContent,
       headings,
       codeBlocks
     }
@@ -56,6 +94,7 @@ function extractContentFromFile(filePath) {
     return null
   }
 }
+
 
 // Get all documentation files
 function getAllDocFiles(dir) {

@@ -2,12 +2,13 @@
   "name": "scaffoldstellarplusdoc",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "build:search": "node --input-type=module scripts/build-search-index.js",
+    "build:search": "node scripts/build-search-index.js",
     "build:all": "npm run build:search && npm run build"
   },
   "dependencies": {
@@ -25,6 +26,9 @@
     "react-dom": "19.1.0"
   },
   "devDependencies": {
+    "@babel/parser": "^7.28.5",
+    "@babel/traverse": "^7.28.5",
+    "@babel/types": "^7.28.5",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",

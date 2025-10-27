@@ -80,8 +80,8 @@ rustc --version`}
               The Stellar CLI is essential for deploying and managing smart contracts:
             </p>
             <CodeBlock id="stellar-cli">
-{`# Install Stellar CLI with optimizations
-cargo install --locked stellar-cli --features opt
+{`# Install Stellar CLI 
+cargo install --locked stellar-cli@23.1.4
 
 # Verify installation
 stellar --version`}
